@@ -21,7 +21,25 @@ jobs:
       
       - name: Build Docker Images
         run: |
-          docker --version
+          "${GITHUB_WORKSPACE}/.github/scripts/script.sh"
+
+      - name: Set up python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: |
+          cd pipelines/iris
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Upload & Run Pipeline
+        env:
+          COOKIES: ${{ secrets.COOKIES }}
+          NAMESPACE: ${{ secrets.NAMESPACE }}
+          URI: ${{ secrets.URI }}
+        run: python pipelines/iris/pipeline.py
 
       - name: Slack Notify
         if: always()
