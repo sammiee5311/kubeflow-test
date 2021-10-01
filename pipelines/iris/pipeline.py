@@ -59,14 +59,14 @@ if __name__ == "__main__":
     experiment_name = 'iris-experiment-1'
     run_name = 'iris-run'
 
-    client = Client(host=host, namespace=namespace, cookies=cookies)
+    # client = Client(host=host, namespace=namespace, cookies=cookies)
 
-    compiler.Compiler().compile(pipeline_iris, pipeline_file)
+    # compiler.Compiler().compile(pipeline_iris, pipeline_file)
 
-    pipeline = client.upload_pipeline(
-        pipeline_package_path=pipeline_file,
-        pipeline_name=pipeline_name
-    )
+    # pipeline = client.upload_pipeline(
+    #     pipeline_package_path=pipeline_file,
+    #     pipeline_name=pipeline_name
+    # )
 
-    experiment = client.create_experiment(name=experiment_name, namespace=namespace)
-    run = client.run_pipeline(experiment.id, run_name, pipeline_id=pipeline.id)
+    # experiment = client.create_experiment(name=experiment_name, namespace=namespace)
+    # run = client.run_pipeline(experiment.id, run_name, pipeline_id=pipeline.id)

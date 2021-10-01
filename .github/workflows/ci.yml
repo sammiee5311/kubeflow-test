@@ -21,7 +21,7 @@ jobs:
       
       - name: Build Docker Images
         run: |
-          "${GITHUB_WORKSPACE}/.github/scripts/script.sh"
+          "${GITHUB_WORKSPACE}/pipelines/${{ secrets.TARGET }}/script.sh"
 
       - name: Set up python
         uses: actions/setup-python@v2
@@ -30,7 +30,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          cd pipelines/iris
+          cd pipelines/${{ secrets.TARGET }}
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
@@ -39,7 +39,7 @@ jobs:
           COOKIES: ${{ secrets.COOKIES }}
           NAMESPACE: ${{ secrets.NAMESPACE }}
           URI: ${{ secrets.URI }}
-        run: python pipelines/iris/pipeline.py
+        run: python pipelines/${{ secrets.TARGET }}/pipeline.py
 
       - name: Slack Notify
         if: always()
