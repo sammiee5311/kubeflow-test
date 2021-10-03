@@ -6,4 +6,4 @@ RUN mkdir /code
 WORKDIR /code
 COPY . /code/
 
-ENTRYPOINT ["python", "load_data.py"]
+ENTRYPOINT ["python", "download_dataset.py"]

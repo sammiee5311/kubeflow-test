@@ -7,4 +7,4 @@ WORKDIR /code
 COPY . /code/
 
 RUN pip install -r requirements.txt
-ENTRYPOINT ["python", "load_data.py"]
+ENTRYPOINT ["python", "categorize_dataset.py"]
