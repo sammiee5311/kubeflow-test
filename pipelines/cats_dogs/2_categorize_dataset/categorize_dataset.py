@@ -7,7 +7,7 @@ import pandas as pd
 from tensorflow.python.lib.io import file_io
 
 
-def categorize_dataset(logger, source_dir, df_filename="file_categories_df.csv", filename="/categories_data.json"):
+def categorize_dataset(logger, source_dir, filename="/categories_data.json"):
 
     os.makedirs(source_dir, exist_ok=True)
 

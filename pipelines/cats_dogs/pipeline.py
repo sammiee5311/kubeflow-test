@@ -1,3 +1,4 @@
+import os
 import kfp.compiler as compiler
 from kfp import dsl
 
@@ -28,4 +29,25 @@ def pipeline():
 
 
 if __name__ == "__main__":
+    host = os.environ["URI"]
+    cookies = os.environ["COOKIES"]
+    namespace = os.environ["NAMESPACE"]
+
+    pipeline_name = "sammiee-cats-dogs"
+    pipeline_file = f"{pipeline_name}.tar.gz"
+
+    experiment_name = "cats-dogs-experiment"
+    run_name = "cats-dogs-run"
+
     compiler.Compiler().compile(pipeline, __file__ + ".tar.gz")
+
+    # client = Client(host=host, namespace=namespace, cookies=cookies)
+
+    # pipeline = client.upload_pipeline(
+    #     pipeline_package_path=pipeline_file,
+    #     pipeline_name=pipeline_name
+    # )
+
+    # experiment = client.create_experiment(name=experiment_name, namespace=namespace)
+    # run = client.run_pipeline(experiment.id, run_name, pipeline_id=pipeline.id)
+
